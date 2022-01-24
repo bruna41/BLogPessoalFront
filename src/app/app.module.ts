@@ -7,6 +7,9 @@ import { MenuComponent } from './menu/menu.component';
 import { RodapeComponent } from './rodape/rodape.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { EntrarComponent } from './entrar/entrar.component';
+import { FormsModule } from '@angular/forms';
+import { InicioComponent } from './inicio/inicio.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,10 +18,13 @@ import { EntrarComponent } from './entrar/entrar.component';
     RodapeComponent,
     CadastrarComponent,
     EntrarComponent,
+    InicioComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
