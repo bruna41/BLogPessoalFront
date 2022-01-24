@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../model/user';
+import { User } from '../model/User';
+
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class CadastrarComponent implements OnInit {
 
-  user: User = new User
+  user: User = new User()
   confirmarSenha: string
   tipoUsuario: string
 

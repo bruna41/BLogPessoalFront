@@ -1,4 +1,4 @@
-import { Post } from "./post"
+import { Post } from "./Post"
 
 export class Tema {
     public id: number
