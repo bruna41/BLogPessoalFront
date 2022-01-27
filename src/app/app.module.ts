@@ -12,6 +12,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { TemaComponent } from './tema/tema.component';
+import { EditTemaComponent } from './edit/edit-tema/edit-tema.component';
+import { DeleteTemaComponent } from './delete/delete-tema/delete-tema.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { TemaComponent } from './tema/tema.component';
     EntrarComponent,
     InicioComponent,
     TemaComponent,
+    EditTemaComponent,
+    DeleteTemaComponent,
   ],
   imports: [
     BrowserModule,
