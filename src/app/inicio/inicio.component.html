@@ -12,6 +12,7 @@
         <div class="col-md-6">
           <button class="btn btn-light mr-2" data-toggle="modal" data-target="#newpost">Nova Postagem</button>
           <a class="btn btn-outline-light" href="#posts">Ver postagens</a>
+          <a class="btn btn-outline-light mt-2" routerLink="/tema">Ver Temas</a>
         </div>
       </div>
 
@@ -63,11 +64,11 @@
 
         <div class="form-group">
           <label class="text-light" for="texto">Texto</label>
-          <textarea class="form-control" name="texto" id="texto" rows="10"></textarea>
+          <textarea class="form-control" name="texto" id="texto" rows="9"></textarea>
         </div>
 
         <div class="form-group">
-          <label class="text-light" for="tema">Escolha seu tema ou <a class="text-primary" data-dismiss="modal" routerLink="/tema">cadastre um novo.</a>:</label>
+          <label class="text-light" for="tema">Escolha seu tema ou <a class="text-dark" data-dismiss="modal" routerLink="/tema">cadastre um novo.</a>:</label>
           <select class="form-control" name="tema" id="tema">
             <option value="">Temas</option>
           </select>
