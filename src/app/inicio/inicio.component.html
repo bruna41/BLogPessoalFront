@@ -38,9 +38,10 @@
   </nav>
  
   <div class="tab-content mt-3" id="nav-tabContent">
+    
+    <!-- Minhas postagens -->
     <div class="tab-pane fade show active" id="nav-meuspost" role="tabpanel" aria-labelledby="nav-meuspost-tab">
      
-      <!-- Minhas postagens -->
       <div class="card-columns d-flex align-items-center" *ngFor="let item of user.postagem">
         <div class="card text-center">
           <div class="card-body">
@@ -48,16 +49,19 @@
             <small class="text-muted">Tema: {{item.tema.descricao}}</small>
             <p class="card-text mt-3">{{item.texto}}</p>
             <p class="card-text"><small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}}</small></p>
+
+            <a [routerLink]="['/edit-post', item.id]" class="text-info mr-3" href="">Editar</a>
+            <a [routerLink]="['/delete-post', item.id]" class="text-danger" href="">Apagar</a>
+
           </div>
         </div>
       </div>
-
     </div>
     
+    <!-- Postagens por Tema -->
     <div class="tab-pane fade" id="nav-postTema" role="tabpanel" aria-labelledby="nav-postTema-tab">
-      
-      <!-- Postagens por Tema -->
-      <div class="card-columns d-flex align-items-center" *ngFor="let tema of listTemas">
+     
+      <div class="card-columns d-flex align-items-center quebra" *ngFor="let tema of listTemas">
         <div class="card text-center" *ngFor="let item of tema.postagem">
           <div class="card-body">
             <h5 class="card-title m-0">{{item.titulo}}</h5>
@@ -70,9 +74,9 @@
 
     </div>
    
+    <!-- Todas as postagens -->
     <div class="tab-pane fade" id="nav-todosPosts" role="tabpanel" aria-labelledby="nav-todosPosts-tab">
-      
-      <!-- Todas as postagens -->
+     
       <div class="card-columns d-flex align-items-center" *ngFor="let item of listPostagens">
         <div class="card text-center">
           <div class="card-body">
