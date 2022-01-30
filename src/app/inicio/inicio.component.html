@@ -59,6 +59,15 @@
     
     <!-- Postagens por Tema -->
     <div class="tab-pane fade" id="nav-postTema" role="tabpanel" aria-labelledby="nav-postTema-tab">
+
+      <div class="row d-flex justify-content-center mt-2 mb-2">
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" id="titulo" placeholder="Digite o tema desejado" [(ngModel)]="nomeTema" 
+            (keyup)="findByNomeTema()">
+          </div>
+        </div>
+      </div>
      
       <div class="card-columns d-flex align-items-center quebra" *ngFor="let tema of listTemas | orderBy : key : reverse">
         <div class="card text-center" *ngFor="let item of tema.postagem">
@@ -75,6 +84,15 @@
    
     <!-- Todas as postagens -->
     <div class="tab-pane fade" id="nav-todosPosts" role="tabpanel" aria-labelledby="nav-todosPosts-tab">
+
+      <div class="row d-flex justify-content-center mt-2 mb-2">
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" id="titulo" placeholder="Digite um título de postagem" [(ngModel)]="tituloPost" 
+            (keyup)="findByTituloPost()">
+          </div>
+        </div>
+      </div>
      
       <div class="card-columns d-flex align-items-center" *ngFor="let item of listPostagens | orderBy : key : reverse">
         <div class="card text-center">
@@ -117,8 +135,7 @@
 
         <div class="form-group">
           <label class="text-light" for="tema">Escolha seu tema ou <a class="text-dark" data-dismiss="modal" routerLink="/tema">cadastre um novo.</a>:</label>
-          <select class="form-control" name="tema" id="tema" [(ngModel)]="idTema" (change)="findByIdTema()">
-            <option value="">Temas</option>
+          <select class="form-control" name="tema" id="tema" placeholder="Temas" [(ngModel)]="idTema" (change)="findByIdTema()">
             <option *ngFor="let item of listTemas" value="{{item.id}}">
               {{item.descricao}}
             </option>
