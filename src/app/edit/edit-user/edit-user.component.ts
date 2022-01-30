@@ -54,7 +54,7 @@ export class EditUserComponent implements OnInit {
     if(this.user.senha != this.confirmarSenha) {
       alert ('Senhas incorretas, escreva novamente.')
     }else {
-      this.authService.cadastrar(this.user).subscribe((resp: User) => {
+      this.authService.atualizar(this.user).subscribe((resp: User) => {
         this.user = resp
         alert('Usuário atualizado com sucesso, faça login novamente!')
         environment.token = ''
