@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Post } from '../model/Post';
 import { Tema } from '../model/Tema';
 import { User } from '../model/User';
+import { AlertasService } from '../service/alertas.service';
 import { AuthService } from '../service/auth.service';
 import { PostagemService } from '../service/postagem.service';
 import { TemaService } from '../service/tema.service';
@@ -29,13 +30,15 @@ export class InicioComponent implements OnInit {
     private router: Router,
     private postagemService: PostagemService,
     private temaService: TemaService,
-    private authService: AuthService
+    private authService: AuthService,
+    private alerta: AlertasService
   ) { }
 
   ngOnInit() {
+    window.scroll(0,0)
 
     if (environment.token == '') {
-      alert('Sua sessão expirou, faça login novamente.')
+      this.alerta.showAlertWarning('Sua sessão expirou, faça login novamente.')
       this.router.navigate(['/entrar'])
     }
 
@@ -76,7 +79,7 @@ export class InicioComponent implements OnInit {
 
     this.postagemService.postPostagem(this.postagem).subscribe((resp: Post)=>{
       this.postagem = resp
-      alert('Postado com sucesso!')
+      this.alerta.showAlertSuccess('Postado com sucesso!')
       this.postagem = new Post()
       this.getAllPostagens()
     })

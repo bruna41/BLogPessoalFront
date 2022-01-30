@@ -17,6 +17,8 @@ import { DeleteTemaComponent } from './delete/delete-tema/delete-tema.component'
 import { DeletePostComponent } from './delete/delete-post/delete-post.component';
 import { EditPostComponent } from './edit/edit-post/edit-post.component';
 import { EditUserComponent } from './edit/edit-user/edit-user.component';
+import { AlertaComponent } from './alerta/alerta.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,14 @@ import { EditUserComponent } from './edit/edit-user/edit-user.component';
     DeletePostComponent,
     EditPostComponent,
     EditUserComponent,
+    AlertaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [{
     provide: LocationStrategy,
