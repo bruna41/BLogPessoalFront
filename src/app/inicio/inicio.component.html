@@ -41,7 +41,7 @@
     <!-- Minhas postagens -->
     <div class="tab-pane fade show active" id="nav-meuspost" role="tabpanel" aria-labelledby="nav-meuspost-tab">
      
-      <div class="card-columns d-flex align-items-center" *ngFor="let item of user.postagem">
+      <div class="card-columns d-flex align-items-center" *ngFor="let item of user.postagem | orderBy : key : reverse">
         <div class="card text-center">
           <div class="card-body">
             <h5 class="card-title m-0">{{item.titulo}}</h5>
@@ -60,7 +60,7 @@
     <!-- Postagens por Tema -->
     <div class="tab-pane fade" id="nav-postTema" role="tabpanel" aria-labelledby="nav-postTema-tab">
      
-      <div class="card-columns d-flex align-items-center quebra" *ngFor="let tema of listTemas">
+      <div class="card-columns d-flex align-items-center quebra" *ngFor="let tema of listTemas | orderBy : key : reverse">
         <div class="card text-center" *ngFor="let item of tema.postagem">
           <div class="card-body">
             <h5 class="card-title m-0">{{item.titulo}}</h5>
@@ -76,7 +76,7 @@
     <!-- Todas as postagens -->
     <div class="tab-pane fade" id="nav-todosPosts" role="tabpanel" aria-labelledby="nav-todosPosts-tab">
      
-      <div class="card-columns d-flex align-items-center" *ngFor="let item of listPostagens">
+      <div class="card-columns d-flex align-items-center" *ngFor="let item of listPostagens | orderBy : key : reverse">
         <div class="card text-center">
           <div class="card-body">
             <h5 class="card-title m-0">{{item.titulo}}</h5>
