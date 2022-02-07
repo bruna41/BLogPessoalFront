@@ -11,7 +11,7 @@
       <div class="row d-flex justify-content-center mt-3 mb-5">
         <div class="col-md-6">
           <button class="btn btn-light mr-2" data-toggle="modal" data-target="#newpost">Nova Postagem</button>
-          <a class="btn btn-outline-light" routerLink="/tema">Ver Temas</a>
+          <a *ngIf="authService.adm()" class="btn btn-outline-light" routerLink="/tema">Ver Temas</a>
         </div>
       </div>
 
