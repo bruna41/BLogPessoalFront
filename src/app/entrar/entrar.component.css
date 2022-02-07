@@ -1,0 +1,7 @@
+#img-bg {
+    background-image: url('https://cardpress.com.br/img/login.png');
+    min-height: 650px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

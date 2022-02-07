@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    scroll-behavior: smooth;
+}
+.font-54 {
+    font-size: 54pt;
+}
+.font-18 {
+    font-size: 18pt;
+}
+*{
+    font-family: cursive;
+}

@@ -1,0 +1,152 @@
+<div class="container-fluid">
+  <div class="row bg-danger d-flex align-items-center">
+
+    <div class="col-md-6">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6 text-white">
+          <h1 class="font-54">Seja bem vinde!</h1>
+          <h5 class="font-18">Expresse aqui seus pensamentos e opiniões.</h5>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center mt-3 mb-5">
+        <div class="col-md-6">
+          <button class="btn btn-light mr-2" data-toggle="modal" data-target="#newpost">Nova Postagem</button>
+          <a *ngIf="authService.adm()" class="btn btn-outline-light" routerLink="/tema">Ver Temas</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6 d-flex justify-content-center">
+      <img src="https://blog.talentbrand.com.br/wp-content/uploads/2019/01/3.png" alt="" width="500px" height="400px">
+    </div>
+  </div>
+</div>
+
+<div class="container mb-3 mt-3" id="posts">
+
+  <nav>
+    
+    <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+      
+      <a (click)="findByIdUser()" class="nav-link active text-secondary font-weight-bold" id="nav-meuspost-tab" data-toggle="tab" href="#nav-meuspost" role="tab" aria-controls="nav-meuspost" aria-selected="true">Minhas Postagens</a>
+      <a class="nav-link text-secondary font-weight-bold" id="nav-postTema-tab" data-toggle="tab" href="#nav-postTema" role="tab" aria-controls="nav-postTema" aria-selected="false">
+        Postagens por Tema</a>
+      <a class="nav-link text-secondary font-weight-bold" id="nav-todosPosts-tab" data-toggle="tab" href="#nav-todosPosts" role="tab" aria-controls="nav-todosPosts" aria-selected="false">Todas as Postagens</a>
+   
+    </div>
+  </nav>
+ 
+  <div class="tab-content mt-3" id="nav-tabContent">
+    
+    <!-- Minhas postagens -->
+    <div class="tab-pane fade show active" id="nav-meuspost" role="tabpanel" aria-labelledby="nav-meuspost-tab">
+     
+      <div class="card-columns d-flex align-items-center" *ngFor="let item of user.postagem | orderBy : key : reverse">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title m-0">{{item.titulo}}</h5>
+            <small class="text-muted">Tema: {{item.tema.descricao}}</small>
+            <p class="card-text mt-3">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}}</small></p>
+
+            <a [routerLink]="['/edit-post', item.id]" class="text-info mr-3" href="">Editar</a>
+            <a [routerLink]="['/delete-post', item.id]" class="text-danger" href="">Apagar</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Postagens por Tema -->
+    <div class="tab-pane fade" id="nav-postTema" role="tabpanel" aria-labelledby="nav-postTema-tab">
+
+      <div class="row d-flex justify-content-center mt-2 mb-2">
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" id="titulo" placeholder="Digite o tema desejado" [(ngModel)]="nomeTema" 
+            (keyup)="findByNomeTema()">
+          </div>
+        </div>
+      </div>
+     
+      <div class="card-columns d-flex align-items-center quebra" *ngFor="let tema of listTemas | orderBy : key : reverse">
+        <div class="card text-center" *ngFor="let item of tema.postagem">
+          <div class="card-body">
+            <h5 class="card-title m-0">{{item.titulo}}</h5>
+            <p class="card-text mt-3">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}}</small></p>
+            <p class="card-text"><small class="text-muted">Escrito por: {{item.usuario.nome}}</small></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+   
+    <!-- Todas as postagens -->
+    <div class="tab-pane fade" id="nav-todosPosts" role="tabpanel" aria-labelledby="nav-todosPosts-tab">
+
+      <div class="row d-flex justify-content-center mt-2 mb-2">
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" id="titulo" placeholder="Digite um título de postagem" [(ngModel)]="tituloPost" 
+            (keyup)="findByTituloPost()">
+          </div>
+        </div>
+      </div>
+     
+      <div class="card-columns d-flex align-items-center" *ngFor="let item of listPostagens | orderBy : key : reverse">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title m-0">{{item.titulo}}</h5>
+            <small class="text-muted">Tema: {{item.tema.descricao}}</small>
+            <p class="card-text mt-3">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}}</small></p>
+            <p class="card-text"><small class="text-muted">Escrito por: {{item.usuario.nome}}</small></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newpost" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-secondary">
+      <div class="modal-header">
+        <h5 class="modal-title text-light" id="staticBackdropLabel">Nova Postagem</h5>
+        <button type="button" class="cancelar" data-dismiss="modal" aria-label="cancelar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <div class="form-group">
+          <label class="text-light" for="titulo">Título</label>
+          <input [(ngModel)]="postagem.titulo" type="text" class="form-control" id="titulo" placeholder="Digite o título do post">
+        </div>
+
+        <div class="form-group">
+          <label class="text-light" for="texto">Texto</label>
+          <textarea [(ngModel)]="postagem.texto" class="form-control" name="texto" id="texto" rows="9"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="text-light" for="tema">Escolha seu tema ou <a class="text-dark" data-dismiss="modal" routerLink="/tema">cadastre um novo.</a>:</label>
+          <select class="form-control" name="tema" id="tema" placeholder="Temas" [(ngModel)]="idTema" (change)="findByIdTema()">
+            <option *ngFor="let item of listTemas" value="{{item.id}}">
+              {{item.descricao}}
+            </option>
+          </select>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success" (click)="publicar()" data-dismiss="modal">Publicar</button>
+      </div>
+    </div>
+  </div>
+</div>
